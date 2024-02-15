@@ -50,9 +50,9 @@ class DeliveryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Delivery $delivery)
+    public function update(DeliveryRequest $request, Delivery $delivery)
     {
-        //
+        $delivery->update($request->all());
     }
 
     /**
