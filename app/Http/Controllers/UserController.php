@@ -15,10 +15,7 @@ class UserController extends MasterController
      */
     public function index()
     {
-        return response()->json([
-            'status' => 200,
-            'data' => UserResource::collection(User::all())
-        ]);
+        return User::all();
     }
 
     /**
@@ -34,10 +31,6 @@ class UserController extends MasterController
     public function store(RegisterRequest $request)
     {
         User::create($request->all());
-        return response()->json([
-            'status' => 200,
-            'msg' => 'User is created successfully'
-        ]);
     }
 
     /**
@@ -70,9 +63,6 @@ class UserController extends MasterController
     public function destroy(User $user)
     {
         $user->delete();
-        return response()->json([
-            'status' => 200,
-            'msg' => 'User is deleted successfully'
-        ]);
+        return redirect()->back();
     }
 }
