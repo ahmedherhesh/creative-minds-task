@@ -15,9 +15,22 @@ use Twilio\Rest\Client;
 
 class AuthController extends MasterController
 {
+    function webLogin()
+    {
+        if (auth()->user())
+            return redirect('home');
+        return view('login');
+    }
+    function _webLogin(LoginRequest $request)
+    {
+        $user = auth()->attempt($request->only('mobile', 'password'), true);
+        if ($user)
+            return redirect('home');
+        return redirect()->back()->with('failed', 'Your Mobile Or Password Is Not Matched');
+    }
     function login(LoginRequest $request)
     {
-        $token = auth('api')->attempt($request->only('mobile', 'password'));
+        $token = auth('api')->attempt($request->only('mobile', 'password'), true);
         if ($token) {
             $user = auth('api')->user();
             if (!$user->mobile_verified_at)

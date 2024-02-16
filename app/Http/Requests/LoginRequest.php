@@ -12,6 +12,7 @@ class LoginRequest extends MasterRequest
         return [
             'mobile'   => 'required|numeric|exists:users,mobile',
             'password' => 'required|min:6',
+            'guard'    => 'nullable|in:api,web'
         ];
     }
 }

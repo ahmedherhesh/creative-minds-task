@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/login', [AuthController::class,'webLogin']);
+Route::post('/login', [AuthController::class,'_webLogin']);
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/', [HomeController::class, 'home']);
+    Route::resource('users', UserController::class);
+    Route::resource('deliveries', DeliveryController::class);
 });
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
