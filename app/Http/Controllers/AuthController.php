@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangeMyPasswordRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Web\LoginRequest as WebLoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\VerifyCodeRequest;
 use App\Http\Resources\UserResource;
@@ -18,14 +19,14 @@ class AuthController extends MasterController
     function webLogin()
     {
         if (auth()->user())
-            return redirect('home');
+            return redirect('/');
         return view('login');
     }
-    function _webLogin(LoginRequest $request)
+    function _webLogin(WebLoginRequest $request)
     {
         $user = auth()->attempt($request->only('mobile', 'password'), true);
         if ($user)
-            return redirect('home');
+            return redirect('/');
         return redirect()->back()->with('failed', 'Your Mobile Or Password Is Not Matched');
     }
     function login(LoginRequest $request)

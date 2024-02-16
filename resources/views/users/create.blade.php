@@ -1,0 +1,51 @@
+@extends('base')
+@section('title', 'Create User')
+
+@section('content')
+    <x-nav />
+    <form action="{{ route('users.store') }}" method="post" class="custom-form">
+        @csrf
+        <h3 class="text-center p-2">Create User</h3>
+        <div class="row mb-3">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="username" id="username" required>
+                @if ($errors->has('username'))
+                    <p class="text-danger">{{ $errors->first('username') }}</p>
+                @endif
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="mobile" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" name="mobile" id="mobile" required>
+                @if ($errors->has('mobile'))
+                    <p class="text-danger">{{ $errors->first('mobile') }}</p>
+                @endif
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="roles" class="col-sm-2 col-form-label">Roles</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="role" id="roles" required>
+                    <option value="admin">Admin</option>
+                    <option value="user" selected>User</option>
+                    <option value="delivery">Delivery</option>
+                </select>
+                @if ($errors->has('role'))
+                    <p class="text-danger">{{ $errors->first('role') }}</p>
+                @endif
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" name="password" id="password" required>
+                @if ($errors->has('password'))
+                    <p class="text-danger">{{ $errors->first('password') }}</p>
+                @endif
+            </div>
+        </div>
+        <button id="submitBtn" type="submit" class="btn btn-primary">Save</button>
+    </form>
+@endsection

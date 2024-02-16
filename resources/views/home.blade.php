@@ -1,8 +1,8 @@
 @extends('base')
 
 @section('content')
+<x-nav />
 <div class="container">
-    <x-nav />
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

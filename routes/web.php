@@ -17,14 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [AuthController::class,'webLogin']);
-Route::post('/login', [AuthController::class,'_webLogin']);
+Route::get('/login', [AuthController::class, 'webLogin']);
+Route::post('/login', [AuthController::class, '_webLogin']);
 
 Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('/', [HomeController::class, 'home']);
+    Route::get('/', [HomeController::class, 'index']);
     Route::resource('users', UserController::class);
     Route::resource('deliveries', DeliveryController::class);
 });
+Route::get('logout', function () {
+    auth()->logout();
+    return redirect('/login');
+});
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

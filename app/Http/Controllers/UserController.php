@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\UserUpdateRequest;
-use App\Http\Resources\UserResource;
+use App\Http\Requests\Web\RegisterRequest;
+use App\Http\Requests\Web\UserUpdateRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends MasterController
 {
@@ -15,7 +13,8 @@ class UserController extends MasterController
      */
     public function index()
     {
-        return User::all();
+        $users =  User::all();
+        return view('users.users', compact('users'));
     }
 
     /**
@@ -23,6 +22,7 @@ class UserController extends MasterController
      */
     public function create()
     {
+        return view('users.create');
     }
 
     /**
@@ -30,7 +30,8 @@ class UserController extends MasterController
      */
     public function store(RegisterRequest $request)
     {
-        User::create($request->all());
+        $user = User::create($request->all());
+        return redirect()->to('users.index');
     }
 
     /**
@@ -46,7 +47,7 @@ class UserController extends MasterController
      */
     public function edit(User $user)
     {
-        return $user;
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -54,7 +55,11 @@ class UserController extends MasterController
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        $user->update($request->all());
+        $requests = $request->all();
+        if (!$request->password)
+            $requests = $request->except('password');
+        $user->update($requests);
+        return redirect()->back();
     }
 
     /**

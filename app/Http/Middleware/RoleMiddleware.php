@@ -22,6 +22,7 @@ class RoleMiddleware
                     return $next($request);
             }
         }
+        auth()->logout();
         return redirect('/login');
     }
 }

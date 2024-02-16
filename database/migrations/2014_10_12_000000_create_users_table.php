@@ -19,6 +19,8 @@ return new class extends Migration
             $table->timestamp('mobile_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'user', 'delivery'])->default('user');
+            $table->double('lat')->nullable();
+            $table->double('lng')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

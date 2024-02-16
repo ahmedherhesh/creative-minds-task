@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('location_id')->references('id')->on('locations')->onUpdate('CASCADE')->onDelete('CASCADE');
-        });
-        Schema::table('locations', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')
-            ->onUpdate('CASCADE')->onDelete('CASCADE');
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->foreign('location_id')->references('id')->on('locations')->onUpdate('CASCADE')->onDelete('CASCADE');
+        // });
+        // Schema::table('locations', function (Blueprint $table) {
+        //     $table->foreign('user_id')->references('id')->on('users')
+        //     ->onUpdate('CASCADE')->onDelete('CASCADE');
+        // });
     }
 
     /**
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('foreign_key', function (Blueprint $table) {
-            //
-        });
+        // Schema::table('foreign_key', function (Blueprint $table) {
+        //     //
+        // });
     }
 };

@@ -26,7 +26,9 @@ class User extends Authenticatable implements HasMedia, JWTSubject
         'username',
         'mobile',
         'password',
-        'location_id',
+        'role',
+        'lat',
+        'lng',
         'image',
         'mobile_verified_at',
     ];
@@ -86,6 +88,6 @@ class User extends Authenticatable implements HasMedia, JWTSubject
     function setImageAttribute($image)
     {
         $path = $image->store('public/uploads/images');
-        $this->addMedia(str_replace('public','storage',$path))->toMediaCollection('profile');
+        $this->addMedia(str_replace('public', 'storage', $path))->toMediaCollection('profile');
     }
 }
