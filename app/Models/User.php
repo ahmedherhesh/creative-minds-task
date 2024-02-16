@@ -31,6 +31,7 @@ class User extends Authenticatable implements HasMedia, JWTSubject
         'lng',
         'image',
         'mobile_verified_at',
+        'device_token'
     ];
 
     /**

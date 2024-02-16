@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('role', ['admin', 'user', 'delivery'])->default('user');
             $table->double('lat')->nullable();
             $table->double('lng')->nullable();
+            $table->text('device_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
