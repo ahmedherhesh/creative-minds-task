@@ -32,7 +32,7 @@ class UserController extends MasterController
     public function store(RegisterRequest $request)
     {
         User::create($request->all());
-        return redirect()->to(route('users.index'));
+        return redirect()->to(route('users.index')."?role=$request->role");
     }
 
     /**

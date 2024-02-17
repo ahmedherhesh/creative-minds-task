@@ -5,7 +5,7 @@
     <x-nav />
     <form action="{{ route('users.store') }}" method="post" class="custom-form">
         @csrf
-        <h3 class="text-center p-2">Create User</h3>
+        <h3 class="text-center p-2">Create {{ ucfirst(request()->role) }}</h3>
         <div class="row mb-3">
             <label for="username" class="col-sm-2 col-form-label">Username</label>
             <div class="col-sm-10">
@@ -52,9 +52,9 @@
             <label for="roles" class="col-sm-2 col-form-label">Roles</label>
             <div class="col-sm-10">
                 <select class="form-control" name="role" id="roles" required>
-                    <option value="admin" @if (request()->role == 'admin') selected @endif>Admin</option>
-                    <option value="user" @if (request()->role == 'user') selected @endif>User</option>
-                    <option value="delivery" @if (request()->role == 'delivery') selected @endif>Delivery</option>
+                    <option value="admin" @selected(request()->role == 'admin')>Admin</option>
+                    <option value="user" @selected(request()->role == 'user')>User</option>
+                    <option value="delivery" @selected(request()->role == 'delivery')>Delivery</option>
                 </select>
                 @if ($errors->has('role'))
                     <p class="text-danger">{{ $errors->first('role') }}</p>
