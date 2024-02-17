@@ -3,7 +3,7 @@
 
 @section('content')
     <x-nav />
-    <form action="{{ route('users.update', $user->id) }}" method="post" class="custom-form">
+    <form action="{{ route('users.update', $user->id) }}" method="post" class="custom-form" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <h3 class="text-center p-2">Edit User</h3>
@@ -49,8 +49,8 @@
             <div class="col-10">
                 <input class="form-control" type="file" id="image" name="image">
                 @if ($errors->has('image'))
-                <p class="text-danger">{{ $errors->first('image') }}</p>
-            @endif
+                    <p class="text-danger">{{ $errors->first('image') }}</p>
+                @endif
             </div>
         </div>
         <div class="row mb-3">
@@ -77,5 +77,5 @@
         </div>
         <button id="submitBtn" type="submit" class="btn btn-primary">Save</button>
     </form>
-    
+
 @endsection

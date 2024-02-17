@@ -3,7 +3,7 @@
 
 @section('content')
     <x-nav />
-    <form action="{{ route('users.store') }}" method="post" class="custom-form">
+    <form action="{{ route('users.store') }}" method="post" class="custom-form" enctype="multipart/form-data">
         @csrf
         <h3 class="text-center p-2">Create {{ ucfirst(request()->role) }}</h3>
         <div class="row mb-3">
