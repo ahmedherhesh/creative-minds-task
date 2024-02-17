@@ -25,6 +25,30 @@
             </div>
         </div>
         <div class="row mb-3">
+            <label for="lng" class="col-sm-2 col-form-label">Location</label>
+            <div class="col-5">
+                <input type="number" class="form-control" name="lng" id="lng" placeholder="lng">
+                @if ($errors->has('lng'))
+                    <p class="text-danger">{{ $errors->first('lng') }}</p>
+                @endif
+            </div>
+            <div class="col-5">
+                <input type="number" class="form-control" name="lat" id="lat" placeholder="lat">
+                @if ($errors->has('lat'))
+                    <p class="text-danger">{{ $errors->first('lat') }}</p>
+                @endif
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-2" for="image" class="form-label">Image</label>
+            <div class="col-10">
+                <input class="form-control" type="file" id="image" name="image">
+                @if ($errors->has('image'))
+                    <p class="text-danger">{{ $errors->first('image') }}</p>
+                @endif
+            </div>
+        </div>
+        <div class="row mb-3">
             <label for="roles" class="col-sm-2 col-form-label">Roles</label>
             <div class="col-sm-10">
                 <select class="form-control" name="role" id="roles" required>
@@ -38,7 +62,7 @@
             </div>
         </div>
         <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" name="password" id="password" required>
                 @if ($errors->has('password'))

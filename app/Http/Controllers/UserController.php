@@ -30,8 +30,8 @@ class UserController extends MasterController
      */
     public function store(RegisterRequest $request)
     {
-        $user = User::create($request->all());
-        return redirect()->to('users.index');
+        User::create($request->all());
+        return redirect()->to(route('users.index'));
     }
 
     /**
@@ -39,7 +39,7 @@ class UserController extends MasterController
      */
     public function show(User $user)
     {
-        return $user;
+        return view('users.profile', compact('user'));
     }
 
     /**

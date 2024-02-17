@@ -88,7 +88,10 @@ class User extends Authenticatable implements HasMedia, JWTSubject
 
     function setImageAttribute($image)
     {
-        $path = $image->store('public/uploads/images');
-        $this->addMedia(str_replace('public', 'storage', $path))->toMediaCollection('profile');
+        echo $image;
+        if ($image) {
+            $path = $image->store('public/uploads/images');
+            $this->addMedia(str_replace('public', 'storage', $path))->toMediaCollection('profile');
+        }
     }
 }

@@ -18,7 +18,7 @@ class RegisterRequest extends FormRequest
             'password' => 'required|min:6',
             'lat'      => 'nullable|numeric|gt:0',
             'lng'      => 'nullable|numeric|gt:0',
-            'image'    => 'nullable|image|mimes:png,jpg,jpeg,gif,svg|max:4096',
+            'image'    => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'role'     => 'nullable|in:admin,user,delivery'
         ];
     }

@@ -15,7 +15,8 @@
             @foreach ($users as $user)
                 <tr>
                     <td>{{ $user->id }}</td>
-                    <td>{{ $user->username }}</td>
+                    <td><a class="text-decoration-none" href="{{ route('users.show', $user->id) }}">{{ $user->username }}</a>
+                    </td>
                     <td>{{ $user->mobile }}</td>
                     <td>{{ $user->role }}</td>
                     <td><img class="rounded" src="{{ $user->image }}" alt="" width="50"></td>
