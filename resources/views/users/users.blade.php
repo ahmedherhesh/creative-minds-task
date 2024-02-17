@@ -2,7 +2,7 @@
 @section('content')
     <x-nav />
     <div class="container">
-        <a href="{{ route('users.create') }}" class="btn btn-primary">Create User</a>
+        <a href="{{ route('users.create') }}?role={{request()->role}}" class="btn btn-primary">Create {{ucfirst(request()->role)}}</a>
         <table class="table table-stripedm-auto text-center">
             <tr>
                 <th>ID</th>
@@ -21,8 +21,9 @@
                     <td>{{ $user->role }}</td>
                     <td><img class="rounded" src="{{ $user->image }}" alt="" width="50"></td>
                     <td class="d-flex gap-2 justify-content-center">
-                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                        <a href="{{ route('users.edit', $user->id) }}?role={{ request()->role }}"
+                            class="btn btn-primary">Edit</a>
+                        <form action="{{ route('users.destroy', $user->id) }}?role={{ request()->role }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger">DELETE</button>

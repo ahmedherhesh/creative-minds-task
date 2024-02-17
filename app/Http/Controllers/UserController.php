@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Web\GetUsersRequest;
 use App\Http\Requests\Web\RegisterRequest;
 use App\Http\Requests\Web\UserUpdateRequest;
 use App\Models\User;
@@ -11,16 +12,16 @@ class UserController extends MasterController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(GetUsersRequest $request)
     {
-        $users =  User::all();
+        $users =  User::whereRole($request->role)->get();
         return view('users.users', compact('users'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(GetUsersRequest $request)
     {
         return view('users.create');
     }
@@ -45,7 +46,7 @@ class UserController extends MasterController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(GetUsersRequest $request, User $user)
     {
         return view('users.edit', compact('user'));
     }
@@ -65,7 +66,7 @@ class UserController extends MasterController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(GetUsersRequest $request, User $user)
     {
         $user->delete();
         return redirect()->back();

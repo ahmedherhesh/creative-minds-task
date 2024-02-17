@@ -52,9 +52,9 @@
             <label for="roles" class="col-sm-2 col-form-label">Roles</label>
             <div class="col-sm-10">
                 <select class="form-control" name="role" id="roles" required>
-                    <option value="admin">Admin</option>
-                    <option value="user" selected>User</option>
-                    <option value="delivery">Delivery</option>
+                    <option value="admin" @if (request()->role == 'admin') selected @endif>Admin</option>
+                    <option value="user" @if (request()->role == 'user') selected @endif>User</option>
+                    <option value="delivery" @if (request()->role == 'delivery') selected @endif>Delivery</option>
                 </select>
                 @if ($errors->has('role'))
                     <p class="text-danger">{{ $errors->first('role') }}</p>
